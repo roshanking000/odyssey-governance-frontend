@@ -27,7 +27,7 @@ export const Voting: React.FC = () => {
         <Image src={Ellipse2} alt="ellipse2" />
       </div>
 
-      <Typography type="h1" className={styles.voting__title}>Governance - Dione Protocol</Typography>
+      <Typography type="h1" className={styles.voting__title}>Odyssey Chain’s Governance</Typography>
       <Typography type="p" className={styles.voting__description}>
         Have your say in the future of the Dione Protocol ecosystem!
       </Typography>
