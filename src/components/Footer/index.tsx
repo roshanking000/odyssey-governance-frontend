@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 
 const Footer = () => (
   <div className={styles.footer_container}>
-    <div className="sm:w-full w-1/2">
+    <div className="flex sm:flex-row flex-col sm:w-full w-1/2 mx-auto">
       <Link href="/" className={styles.footer_link} needArrow={false}>
         <p className="sm:text-base text-xs">
           ©
@@ -13,18 +13,19 @@ const Footer = () => (
           Dione Protocol LLC
         </p>
       </Link>
-      <span className="sm:text-base text-xs">• All Rights Reserved •</span>
-      <Link href="/services" className={styles.footer_link} needArrow={false}>
-        <p className="sm:text-base text-xs">
-          Term of Services
-        </p>
-      </Link>
-      <span className="sm:text-base text-xs">•</span>
-      <Link href="/contact" className={styles.footer_link} needArrow={false}>
-        <p className="sm:text-base text-xs">
-          Contact
-        </p>
-      </Link>
+      <div className="flex sm:flex-row flex-col justify-start">
+        <p className="sm:text-base text-xs">• All Rights Reserved</p>
+        <Link href="/services" className={styles.footer_link} needArrow={false}>
+          <p className="sm:text-base text-xs">
+            • Term of Services
+          </p>
+        </Link>
+        <Link href="/contact" className={styles.footer_link} needArrow={false}>
+          <p className="sm:text-base text-xs">
+            • Contact
+          </p>
+        </Link>
+      </div>
     </div>
     {/* <Typography 
       className={ 
