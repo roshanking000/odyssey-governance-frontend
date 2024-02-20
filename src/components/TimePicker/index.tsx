@@ -19,9 +19,32 @@ export const TimePicker: FC<TimePickerProps> = ({
   error = false,
 }) => {
   const [open, setOpen] = useState({ open: false });
+  const now = moment();
+
+  const disabledHours = () => {
+    const hours = [];
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < now.hour(); i++) {
+      hours.push(i);
+    }
+    return hours;
+  };
+
+  const disabledMinutes = (selectedHour: number) => {
+    const minutes = [];
+    if (selectedHour === now.hour()) {
+    // eslint-disable-next-line no-plusplus
+      for (let i = 0; i < now.minute(); i++) {
+        minutes.push(i);
+      }
+    }
+    return minutes;
+  };
+
+  const disabledSeconds = () => [];
 
   return (
-    <TimePickerRaw 
+    <TimePickerRaw
       defaultValue={moment()}
       showSecond={false}
       open={open.open}
@@ -34,6 +57,9 @@ export const TimePicker: FC<TimePickerProps> = ({
         [styles.error]: error,
       })}
       placeholder="00:00"
+      disabledHours={disabledHours}
+      disabledMinutes={disabledMinutes}
+      disabledSeconds={disabledSeconds}
     />
   );
 };

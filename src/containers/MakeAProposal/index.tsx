@@ -151,7 +151,10 @@ export const MakeAProposal: React.FC = () => {
         <div>
           <span className={styles.timepicker_label}>START TIME</span>
           <TimePicker
-            onChangeValue={setStartTime}
+            onChangeValue={(e) => {
+              setStartTime(e);
+              if (e > endTime) setEndTime(e);
+            }}
             value={startTime}
           />
         </div>
@@ -165,7 +168,10 @@ export const MakeAProposal: React.FC = () => {
         <div>
           <span className={styles.timepicker_label}>END TIME</span>
           <TimePicker
-            onChangeValue={setEndTime}
+            onChangeValue={(e) => {
+              if (e < startTime) setStartTime(e);
+              setEndTime(e);
+            }}
             value={endTime}
           />
         </div>
