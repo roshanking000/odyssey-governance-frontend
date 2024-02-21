@@ -19,7 +19,7 @@ export const TimePicker: FC<TimePickerProps> = ({
   error = false,
 }) => {
   const [open, setOpen] = useState({ open: false });
-  const now = moment();
+  const now = moment.utc();
 
   const disabledHours = () => {
     const hours = [];

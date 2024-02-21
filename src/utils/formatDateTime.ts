@@ -11,9 +11,11 @@ export const formatDateFromTimestamp = (timestamp: number | string | undefined):
 };
 
 export const formatDate = (date: Date) => {
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = date.getFullYear();
+  const isoDateString = date.toISOString();
+  const dateObject = new Date(isoDateString);
+  const day = String(dateObject.getUTCDate()).padStart(2, '0');
+  const month = String(dateObject.getUTCMonth() + 1).padStart(2, '0');
+  const year = dateObject.getUTCFullYear();
   return `${year}/${month}/${day}`;
 };
 

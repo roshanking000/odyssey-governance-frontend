@@ -6,6 +6,7 @@ import {
 import { 
   proposalSetStatus, proposalGetData, proposalSetState,
 } from 'store/proposal/actionCreators';
+import { parseDataContent } from 'utils/parseContent';
 
 export function* proposalGetDataSaga({ type }: ReturnType<typeof proposalGetData>) {
   try{
@@ -27,8 +28,9 @@ export function* proposalGetDataSaga({ type }: ReturnType<typeof proposalGetData
         againstTitle: string,
         status: ProposalStatus,
       }[] } = yield responseVotes.json();
+      const result = parseDataContent(results);
       yield put(proposalSetState({ 
-        list: results,
+        list: result,
       }));
     }
 

@@ -56,23 +56,23 @@ export const MakeAProposal: React.FC = () => {
   const [choice1, setChoice1] = useState('');
   const [choice2, setChoice2] = useState('');
   const [startDate, setStartDate] = useState<Date>(new Date());
-  const [startTime, setStartTime] = useState<Moment>(moment());
+  const [startTime, setStartTime] = useState<Moment>(moment.utc());
   const [endDate, setEndDate] = useState<Date>(new Date());
-  const [endTime, setEndTime] = useState<Moment>(moment());
+  const [endTime, setEndTime] = useState<Moment>(moment.utc());
 
   // const isAvailableAddChoice = !!choice1 && !!choice2;
 
   // const onAddChoiceClick = useCallback(() => {}, []);
 
   const handleSubmitProposal = useCallback(() => {
-    const currentDateTime = moment();
-    const startDateTime = moment(startDate).set({
+    const currentDateTime = moment.utc();
+    const startDateTime = moment.utc(startDate).set({
       hour: startTime.hours(),
       minute: startTime.minutes(),
       second: startTime.seconds(),
     });
 
-    const endDateTime = moment(endDate).set({
+    const endDateTime = moment.utc(endDate).set({
       hour: endTime.hours(),
       minute: endTime.minutes(),
       second: endTime.seconds(),
@@ -144,12 +144,12 @@ export const MakeAProposal: React.FC = () => {
         <DatePicker
           onChangeValue={setStartDate}
           value={startDate}
-          label="START DATE"
+          label="START DATE (UTC)"
           minDate={new Date()}
         />
 
         <div>
-          <span className={styles.timepicker_label}>START TIME</span>
+          <span className={styles.timepicker_label}>START TIME (UTC)</span>
           <TimePicker
             onChangeValue={(e) => {
               setStartTime(e);
@@ -162,11 +162,11 @@ export const MakeAProposal: React.FC = () => {
         <DatePicker
           onChangeValue={setEndDate}
           value={endDate}
-          label="END DATE"
+          label="END DATE (UTC)"
           minDate={startDate}
         />
         <div>
-          <span className={styles.timepicker_label}>END TIME</span>
+          <span className={styles.timepicker_label}>END TIME (UTC)</span>
           <TimePicker
             onChangeValue={(e) => {
               if (e < startTime) setStartTime(e);
